@@ -182,22 +182,6 @@
                         ?>
                     </select>
                 </div><!--end tr40-->
-<!--                <div id="tr33"><br/>-->
-<!--                    <input type="text" id="classname" name="classname" placeholder="Class Name" value="--><?php //if ($_POST && $errors && $_POST['classId'] == 0) {
-//                        echo htmlentities($_POST['classname'], ENT_COMPAT, 'UTF-8');}?><!--"/>-->
-<!--                    <h5><em>Be sure to indicate the skill level in the name</em></h5>-->
-<!--                    <span class="error">-->
-<!--                        --><?php
-//                        if ($_POST && isset($errors['classname'])) {
-//                            echo $errors['classname'];
-//                        }
-//                        ?>
-<!--                    </span><br/>-->
-<!--                </div><!--end tr33-->
-<!--                <div id="td1h1"><br/>-->
-<!--                    <input type="submit" id="editclass" name="editclass" class="btn" value="Edit Class"-->
-<!--                           onclick="return confirm('Editing the class information will change the information for all scheduled classes associated with this particular class description.')"/>-->
-<!--                </div><!--end tdi-->
                 <div id="tr40"><br/>
                     <select name="wosubcatid">
                         <option value="">--Select a Work Out Class--</option>

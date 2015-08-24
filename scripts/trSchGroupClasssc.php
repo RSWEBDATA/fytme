@@ -24,14 +24,6 @@ try {
 
         //Class Validators
         if ($_POST['classId'] == 0) {
-            $tname = trim($_POST['classname']); //eliminate accidental space
-            if (empty($tname)) {
-                $errors['classname'] = 'Please create a class name you will remember.';
-            } else {
-                if (!preg_match("/^[a-zA-Z0-9’'. -]+$/", $_POST['classname'])) {
-                    $errors['classname'] = 'Please use appropriate format. Letters and numbers only.';
-                }
-            }
             if ($_POST['woSubCatId'] == "") {
                 $errors['woSubCatId'] = "Please select a work out type";
             }
@@ -92,8 +84,8 @@ try {
                 $level = mysqli_real_escape_string($dbconn, $_POST['level']);
 
                 //add to db
-                $sqlInsertClass = "INSERT INTO class (contactId, className, woSubCatId, classDescription, level)
-                                   VALUES ('$contactId', '$className', '$woSubCatId', '$classDescription', '$level')";
+                $sqlInsertClass = "INSERT INTO class (contactId, woSubCatId, classDescription, level)
+                                   VALUES ('$contactId', '$woSubCatId', '$classDescription', '$level')";
                 $dbconn->query($sqlInsertClass);
 
                 //Get last id
