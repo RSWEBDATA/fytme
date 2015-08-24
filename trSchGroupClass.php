@@ -175,9 +175,13 @@
                     <select id="classId" name="classId">
                         <option value="0">Add new class</option>
                         <?php
-                        foreach ($allTrClasses AS $rowTRC) {
-                            echo "<option value='" .$rowTRC['classId'] ."' data-classid='" .$rowTRC['classId'] ."' data-classname='" .$rowTRC['className'] ."' data-classdescription='" .$rowTRC['classDescription'] ."'
-                                    data-wosubcatid='" .$rowTRC['woSubCatId'] ."' data-level='" .$rowTRC['level'] ."'>" .$rowTRC['woSubCatName'] ." - " .$rowTRC['level'] ."</option>";
+                        foreach ($woSubCat as $rowTest ) {
+                            foreach ($allTrClasses AS $rowTRC) {
+                                if ($rowTest['woSubCatId'] == $rowTRC['woSubCatId'] && $rowTest['level'] == $rowTRC['level']) {
+                                    echo "<option value='" . $rowTRC['classId'] . "' data-classid='" . $rowTRC['classId'] . "' data-classname='" . $rowTRC['className'] . "' data-classdescription='" . $rowTRC['classDescription'] . "'
+                                        data-wosubcatid='" . $rowTRC['woSubCatId'] . "' data-level='" . $rowTRC['level'] . "'>" . $rowTRC['woSubCatName'] . " - " . $rowTRC['level'] . "</option>";
+                                }
+                            }
                         }
                         ?>
                     </select>
