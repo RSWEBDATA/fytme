@@ -12,6 +12,16 @@
     <link href="css/tr.css" rel="stylesheet" type="text/css" />
     <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
 
+    <style type="text/css">
+        body {
+            background-image      : url("images/trsignup.jpg");
+            background-attachment : fixed;
+            background-position   : 50% 50%;     /* or: center center */
+            background-repeat: no-repeat;
+            background-size       : cover;
+        }
+
+    </style>
 </head>
 
 <body>
