@@ -171,52 +171,39 @@
                 <div style="height: 20px"></div><!--spacer-->
                 <h2>Class</h2><br/>
                 <h3 style="margin-left: 5%"><em>Add a new class or select a previous one</em></h3>
-                <div id="tr33">
+                <div id="tr40">
                     <select id="classId" name="classId">
                         <option value="0">Add new class</option>
                         <?php
                         foreach ($allTrClasses AS $rowTRC) {
                             echo "<option value='" .$rowTRC['classId'] ."' data-classid='" .$rowTRC['classId'] ."' data-classname='" .$rowTRC['className'] ."' data-classdescription='" .$rowTRC['classDescription'] ."'
-                                    data-wosubcatid='" .$rowTRC['woSubCatId'] ."' data-level='" .$rowTRC['level'] ."'>" .$rowTRC['className'] ."</option>";
+                                    data-wosubcatid='" .$rowTRC['woSubCatId'] ."' data-level='" .$rowTRC['level'] ."'>" .$rowTRC['woSubCatName'] ." - " .$rowTRC['level'] ."</option>";
                         }
                         ?>
                     </select>
-                </div><!--end tr33-->
-                <div id="tr33"><br/>
-                    <input type="text" id="classname" name="classname" placeholder="Class Name" value="<?php if ($_POST && $errors && $_POST['classId'] == 0) {
-                        echo htmlentities($_POST['classname'], ENT_COMPAT, 'UTF-8');}?>"/>
-                    <h5><em>Be sure to indicate the skill level in the name</em></h5>
-                    <span class="error">
-                        <?php
-                        if ($_POST && isset($errors['classname'])) {
-                            echo $errors['classname'];
-                        }
-                        ?>
-                    </span><br/>
-                </div><!--end tr33-->
+                </div><!--end tr40-->
+<!--                <div id="tr33"><br/>-->
+<!--                    <input type="text" id="classname" name="classname" placeholder="Class Name" value="--><?php //if ($_POST && $errors && $_POST['classId'] == 0) {
+//                        echo htmlentities($_POST['classname'], ENT_COMPAT, 'UTF-8');}?><!--"/>-->
+<!--                    <h5><em>Be sure to indicate the skill level in the name</em></h5>-->
+<!--                    <span class="error">-->
+<!--                        --><?php
+//                        if ($_POST && isset($errors['classname'])) {
+//                            echo $errors['classname'];
+//                        }
+//                        ?>
+<!--                    </span><br/>-->
+<!--                </div><!--end tr33-->
 <!--                <div id="td1h1"><br/>-->
 <!--                    <input type="submit" id="editclass" name="editclass" class="btn" value="Edit Class"-->
 <!--                           onclick="return confirm('Editing the class information will change the information for all scheduled classes associated with this particular class description.')"/>-->
 <!--                </div><!--end tdi-->
-                <div id="tr87">
-                    <h3>Description:</h3>
-                    <textarea id="classdescription" name="classdescription" class="pub" rows="10" cols="100" onkeydown="limitText(this.form.classdescription, this.form.countdown1, 250);" onkeyup="limitText(this.form.classdescription, this.form.countdown1, 250)"><?php if(isset($_POST['addSched']) && $_POST['classId'] == 0) echo $_POST['classdescription']; ?></textarea>
-                    <h5>(Maximum characters: 250)<br>
-                        <input readonly type="text" name="countdown1" size="3" class="count" value="250"/>characters left.</h5>
-                    <span class="error">
-                        <?php
-                        if ($_POST && isset($errors['classdescription'])) {
-                            echo $errors['classdescription'];
-                        }
-                        ?>
-                    </span><br/>
-                </div><!--end tr87-->
                 <div id="tr40"><br/>
                     <select name="wosubcatid">
-                        <option value="">--Select a Work Out Type--</option>
+                        <option value="">--Select a Work Out Class--</option>
                         <?php
                         foreach ($woSubCat AS $rowSC) { ?>
-                            <option value="<?php echo $rowSC['woSubCatId']; ?>" <?php if(isset($_POST['addSched']) && $_POST['wosubcatid']==$rowSC['woSubCatId']): ?> selected="selected" <? endif ?>><?php echo $rowSC['woSubCatName']; ?></option>
+                            <option value="<?php echo $rowSC['woSubCatId']; ?>" <?php if(isset($_POST['addSched']) && $_POST['wosubcatid']==$rowSC['woSubCatId']): ?> selected="selected" <? endif ?>><?php echo $rowSC['woSubCatName'] ." - " .$rowSC['level']; ?></option>
                         <?php }
                         ?>
                     </select><br/>
@@ -243,6 +230,19 @@
                         ?>
                     </span>
                 </div><!--end td40-->
+                <div id="tr87"><br/>
+                    <h3>Description:</h3>
+                    <textarea id="classdescription" name="classdescription" class="pub" rows="10" cols="100" onkeydown="limitText(this.form.classdescription, this.form.countdown1, 250);" onkeyup="limitText(this.form.classdescription, this.form.countdown1, 250)"><?php if(isset($_POST['addSched']) && $_POST['classId'] == 0) echo $_POST['classdescription']; ?></textarea>
+                    <h5>(Maximum characters: 250)<br>
+                        <input readonly type="text" name="countdown1" size="3" class="count" value="250"/>characters left.</h5>
+                    <span class="error">
+                        <?php
+                        if ($_POST && isset($errors['classdescription'])) {
+                            echo $errors['classdescription'];
+                        }
+                        ?>
+                    </span><br/>
+                </div><!--end tr87-->
             </div><!--end tpContainer-->
             <div id="tpContainer">
                 <h2>Class</h2><br/>

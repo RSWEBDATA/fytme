@@ -9,9 +9,11 @@ error_reporting(E_ALL);
 
     $chooseState = getAllState($dbconn);
     $allTrClasses = getAllTrClasses($dbconn, $contactId);
-    $woSubCat = getwoSubCat($dbconn);
     $allTrLocate = getAllTrLocations($dbconn, $contactId);
     $contact = getSingleContact($dbconn, $contactId);
+    $trainer = getSingleTrainer($dbconn, $contactId);
+    $trId = $trainer['trId'];
+    $woSubCat = getTrWOs($dbconn, $trId);
     $tzip = $contact['zip'];
     $ll = getZipLL($dbconn, $tzip);
 

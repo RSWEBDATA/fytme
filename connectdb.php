@@ -63,6 +63,14 @@ function getMajorCategories ($dbconn) {
     return $resultMajCat;
 }
 
+//Get trainer selected work outs (Those the trainer wants to train)
+function gettrWOs ($dbconn, $trId) {
+    $sqlTrWOs = "SELECT wotrJoin.*, woSubCat.woSubCatName FROM wotrJoin
+                 LEFT JOIN woSubCat ON woSubCat.woSubCatId=wotrJoin.woSubCatId WHERE trId=16";
+    $resultTrWOs = $dbconn->query($sqlTrWOs);
+    return $resultTrWOs;
+}
+
 //Get all classes by trainer
 function getAllTrClasses ($dbconn, $contactId) {
     $sqlAllTrClass = "SELECT class.*, woSubCat.woSubCatName FROM class LEFT JOIN woSubCat ON woSubCat.woSubCatId = class.woSubCatId WHERE contactId=$contactId AND active='active'";
