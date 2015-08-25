@@ -66,7 +66,7 @@ function getMajorCategories ($dbconn) {
 //Get trainer selected work outs (Those the trainer wants to train)
 function gettrWOs ($dbconn, $trId) {
     $sqlTrWOs = "SELECT wotrJoin.*, woSubCat.woSubCatName FROM wotrJoin
-                 LEFT JOIN woSubCat ON woSubCat.woSubCatId=wotrJoin.woSubCatId WHERE trId=16";
+                 LEFT JOIN woSubCat ON woSubCat.woSubCatId=wotrJoin.woSubCatId WHERE trId=$trId";
     $resultTrWOs = $dbconn->query($sqlTrWOs);
     return $resultTrWOs;
 }
@@ -76,6 +76,24 @@ function getAllTrClasses ($dbconn, $contactId) {
     $sqlAllTrClass = "SELECT class.*, woSubCat.woSubCatName FROM class LEFT JOIN woSubCat ON woSubCat.woSubCatId = class.woSubCatId WHERE contactId=$contactId AND active='active'";
     $resultATC = $dbconn->query($sqlAllTrClass);
     return $resultATC;
+}
+
+//Get all 1x1 classes by trainer
+function gettr1x1 ($dbconn, $contactId) {
+    $sqltr1x1 = "SELECT class.*, woSubCat.woSubCatName FROM class LEFT JOIN woSubCat ON woSubCat.woSubCatId = class.woSubCatId WHERE contactId=$contactId AND price1x1 IS NOT NULL";
+    $resulttr1x1 = $dbconn->query($sqltr1x1);
+    return $resulttr1x1;
+}
+
+//Get all 1x1 workouts that do not have classes yet
+function getClassesNeeded ($dbconn, $contactId, $trId) {
+    $sqlGCN = "SELECT wotrJoin.*, t.*, woSubCat.woSubCatName FROM wotrJoin
+               LEFT JOIN woSubCat ON woSubCat.woSubCatId=wotrJoin.woSubCatId
+               LEFT JOIN
+               (SELECT * FROM class WHERE contactId = $contactId) t ON t.woSubCatId = wotrJoin.woSubCatId
+               WHERE trId=$trId AND t.classId IS NULL";
+    $resultCGN = $dbconn->query($sqlGCN);
+    return $resultCGN;
 }
 
 //Get all locations by trainer

@@ -1,5 +1,7 @@
 <?php
 
+    require_once 'connectdb.php';
+    require_once 'scripts/trAddClass1x1sc.php';
 
 ?>
 
@@ -27,9 +29,20 @@
     <div id="topbanner">
         <?php include_once 'includes/inc.trainer.banner.php' ?>
     </div><!--end topbanner-->
+    <div id="tpwrap">
+        <div id="tpContainer">
+            <h2 align="center">Please create a class for each of your selected work out types.</h2>
+            <h3 align="center"><em>These classes will be for one on one training sessions.</em></h3>
+        </div><!--end tpContainer-->
 
+        <?php
+        foreach ($trWOs as $rowWO) {
 
+            }
 
+        ?>
+
+    </div><!--end tpwrap-->
     <div id="botbanner" class="botfix">
         <?php include_once 'includes/inc.botbanner.php'; ?>
     </div><!--end botbanner-->
