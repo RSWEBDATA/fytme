@@ -14,6 +14,22 @@
     <link href="css/tr.css" rel="stylesheet" type="text/css" />
     <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
 
+    <!--JQuery links-->
+    <script src="http://code.jquery.com/jquery-2.0.2.js"></script>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+
+    <script type="text/javascript" src="js/trAddClass1x1.js"></script>
+    <script language="javascript" type="text/javascript">
+        //Limit textarea imput
+        function limitText(limitField, limitCount, limitNum) {
+            if (limitField.value.length > limitNum) {
+                limitField.value = limitField.value.substring(0, limitNum);
+            } else {
+                limitCount.value = limitNum - limitField.value.length;
+            }
+        }
+    </script>
     <style type="text/css">
         body {
             background-image      : url("images/trsignup.jpg");
@@ -26,22 +42,34 @@
 </head>
 
 <body>
-    <div id="topbanner">
-        <?php include_once 'includes/inc.trainer.banner.php' ?>
-    </div><!--end topbanner-->
+<!--    <div id="topbanner">-->
+<!--        --><?php //include_once 'includes/inc.trainer.banner.php' ?>
+<!--    </div><!--end topbanner-->-->
     <div id="tpwrap">
         <div id="tpContainer">
             <h2 align="center">Please create a class for each of your selected work out types.</h2>
             <h3 align="center"><em>These classes will be for one on one training sessions.</em></h3>
         </div><!--end tpContainer-->
-
-        <?php
-        foreach ($trWOs as $rowWO) {
-
-            }
-
-        ?>
-
+        <form action="" method="post" name="addClass">
+            <?php
+                foreach ($needed as $rowN) { ?>
+                    <div id="tpContainer">
+                        <div id="tr40"><input type="text" name="woSubCatName[]" value="<?php echo $rowN['woSubCatName'] ?>" disabled/>
+                            <input type="hidden" name="woSubCatId[]" value="<?php echo $rowN['woSubCatId'] ?>"/></div><!--end tr40-->
+                        <div id="td40"><input type="text" name="level[]" value="<?php echo $rowN['level'] ?>" readonly /></div><!--end td40-->
+                        <div id="tr87"><br/>
+                            Class Description:<br/><textarea name="classDescription[]" class="pub" rows="10" cols="80" maxlength="250"><?php if ($_POST && $errors) { echo htmlentities($_POST['classDescription'], ENT_COMPAT, 'UTF-8');} ?></textarea>
+                        </div><!--end tr87-->
+                        <div id="tr33"><br/><input type="text" name="price1x1[]" class="currency" placeholder="Set price for 1x1 training"/></div><!--end tr33-->
+                        <div style="height: 30px;"></div><!--spacer-->
+                    </div><!--end tpContainer-->
+            <?php } ?>
+            <div style="height: 30px;"></div><!--spacer-->
+            <div id="tpContainer">
+               <input type="submit" id="addClass" name="addClass" class="btn" value="Add Classes"/>
+            </div><!--end tpContainer-->
+        </form>
+        <div style="height: 80px;"></div><!--spacer-->
     </div><!--end tpwrap-->
     <div id="botbanner" class="botfix">
         <?php include_once 'includes/inc.botbanner.php'; ?>

@@ -1,3 +1,5 @@
+
+
 //sets amount input in proper currency format.
 (function($) {
     $.fn.currencyFormat = function() {

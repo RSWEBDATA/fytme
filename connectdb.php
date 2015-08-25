@@ -90,7 +90,7 @@ function getClassesNeeded ($dbconn, $contactId, $trId) {
     $sqlGCN = "SELECT wotrJoin.*, t.*, woSubCat.woSubCatName FROM wotrJoin
                LEFT JOIN woSubCat ON woSubCat.woSubCatId=wotrJoin.woSubCatId
                LEFT JOIN
-               (SELECT * FROM class WHERE contactId = $contactId) t ON t.woSubCatId = wotrJoin.woSubCatId
+               (SELECT class.classId, class.woSubCatId AS ident FROM class WHERE contactId = $contactId) t ON t.ident = wotrJoin.woSubCatId
                WHERE trId=$trId AND t.classId IS NULL";
     $resultCGN = $dbconn->query($sqlGCN);
     return $resultCGN;
