@@ -29,6 +29,13 @@
                 limitCount.value = limitNum - limitField.value.length;
             }
         }
+        //currency check
+        $(".currency").onchanged(function() {
+            var valid = /^\d{0,4}(\.\d{0,2})?$/.test(this.value)
+            if(!valid) {
+                alert("Please enter your price in number format.");
+            }
+        });
     </script>
     <style type="text/css">
         body {
@@ -49,6 +56,13 @@
         <div id="tpContainer">
             <h2 align="center">Please create a class for each of your selected work out types.</h2>
             <h3 align="center"><em>These classes will be for one on one training sessions.</em></h3>
+            <span class="error">
+                <?php
+                if ($_POST && isset($errors['classDescription'])) {
+                    echo $errors['classDescription'];
+                }
+                ?>
+            </span>
         </div><!--end tpContainer-->
         <form action="" method="post" name="addClass">
             <?php
@@ -57,10 +71,13 @@
                         <div id="tr40"><input type="text" name="woSubCatName[]" value="<?php echo $rowN['woSubCatName'] ?>" disabled/>
                             <input type="hidden" name="woSubCatId[]" value="<?php echo $rowN['woSubCatId'] ?>"/></div><!--end tr40-->
                         <div id="td40"><input type="text" name="level[]" value="<?php echo $rowN['level'] ?>" readonly /></div><!--end td40-->
+
                         <div id="tr87"><br/>
-                            Class Description:<br/><textarea name="classDescription[]" class="pub" rows="10" cols="80" maxlength="250"><?php if ($_POST && $errors) { echo htmlentities($_POST['classDescription'], ENT_COMPAT, 'UTF-8');} ?></textarea>
+                            Class Description:<br/><textarea name="classDescription[]" required class="pub" rows="5" cols="80" maxlength="250"></textarea>
                         </div><!--end tr87-->
-                        <div id="tr33"><br/><input type="text" name="price1x1[]" class="currency" placeholder="Set price for 1x1 training"/></div><!--end tr33-->
+                        <div id="tr33"><br/>
+                            <input type="text" name="price1x1[]" pattern="[0-9][0-9].[0-9][0-9]" title="Please enter the price in x.xx format (e.g. 3.99)" class="currency" placeholder="Set price for 1x1 training"/>
+                        </div><!--end tr33-->
                         <div style="height: 30px;"></div><!--spacer-->
                     </div><!--end tpContainer-->
             <?php } ?>

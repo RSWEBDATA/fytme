@@ -10,18 +10,12 @@ error_reporting(E_ALL);
     $trId = $trainer['trId'];
     $needed = getClassesNeeded ($dbconn, $contactId, $trId);
 
+    if (empty($needed)) {
+        header("location: trProfile.php?contactId=$contactId");
+    }
+
 try {
     if (isset($_POST['addClass'])) {
-        //validators
-        $input_count = count($_POST['woSubCatId']);
-        for ($i = 0; $i < $input_count; $i++) {
-            $checkDesc = mysqli_real_escape_string($dbconn, $_POST['classDescription'][$i]);
-            $checkPrice = mysqli_real_escape_string($dbconn, $_POST['price1x1'][$i]);
-
-            if (!$checkDesc) {
-                $errors['classDescription'] = 'Please give a description for each class.';
-            }
-        }
 
         if (!$errors) {
             $input_count = count($_POST['woSubCatId']);

@@ -83,6 +83,7 @@ try {
             foreach ($wo AS $key => $value) {
                 $i++;
             }
+            header("location: trAddClass1x1.php?contactId=$contactId");
         }
     }
 
