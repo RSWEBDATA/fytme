@@ -28,6 +28,28 @@
             }
         });
     </script>
+    <!--modal scripts-->
+    <script type="text/javascript">
+        $(function() {
+            $("#modDialog").dialog({
+                autoOpen: false,
+                width: 450,
+                modal: true,
+                buttons: {
+                    "Log In": function() {
+                        window.location = "cusLogin.php";
+                    },
+                    "Guest": function() {
+                        window.location = "ncFilterStart.php";
+                    }
+                }
+            });
+
+            $("#modalOpen").click(function() {
+                $("#modDialog").dialog("open");
+            });
+        });
+    </script>
 </head>
 
 <body>
@@ -155,7 +177,7 @@
                 CHOOSE A TIME THAT FITS YOUR SCHEDULE<br/>
                 CHOOSE A SESSION THAT FITS YOUR NEEDS
         </h2>
-        <h6><a href="#">FIND A CLASS THAT WORKS FOR YOU TODAY</a></h6>
+        <h6><a id="modalOpen" href="#panelfour">FIND A CLASS THAT WORKS FOR YOU TODAY</a></h6>
     </div><!--end p4maincont-->
 </div><!--end panelfour-->
 <div id="panelthree" class="look">
@@ -184,6 +206,13 @@
     </div><!--end p5maincont-->
 </div><!--end panelfive-->
 <div style="height: 10px"></div><!--spacer-->
+
+
+
+<div id="modDialog" >Do you want to Login</div>
+
+
+
 <div id="botbanner">
     <?php include_once 'includes/inc.botbanner.php'; ?>
     <div style="height: 10px"></div><!--spacer-->
