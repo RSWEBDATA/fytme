@@ -33,18 +33,26 @@ error_reporting(E_ALL);
             <form action="" id="filt2" method="post">
                 <h2>For whom are you booking this session<br/><br/>
                     <input type="radio" id="guest" name="guest" class="rad" checked value="guest">&nbsp;&nbsp;Guest
-                    <input type="radio" id="guest" name="guest" class="rad" value="myself">&nbsp;&nbsp;Myself
+                    <input type="radio" id="guest" name="guest" class="rad" value="myself">&nbsp;&nbsp;Myself<br/>
 
                     <p>
-                        Please choose a work out<br>
+                        Please choose a work out<br><br/>
                         <select name="woSubCatId">
                             <option value="">Select</option>
                             <?php foreach ($wo as $row ) {
                                 echo "<option value='" .$row['woSubCatId'] ."'>" .$row['woSubCatName'] ."</option>";
                             } ?>
                         </select>
+                        <span class="error">
+                            <?php
+                            if ($_POST && isset($errors['woSubCatId'])) {
+                                echo $errors['woSubCatId'];
+                            }
+                            ?>
+                        </span><br/>
                     </p>
                 </h2>
+                <input type="submit" id="filt2sub" name="filt2sub" class="btn" value="NEXT"/>
             </form>
         </div>
     </div>
