@@ -56,11 +56,11 @@ function getAllTrainers ($dbconn) {
     return $resultAT;
 }
 
-//Get all major categories
-function getMajorCategories ($dbconn) {
-    $sqlMajCat = "SELECT * FROM majorClassCategories";
-    $resultMajCat = $dbconn->query($sqlMajCat);
-    return $resultMajCat;
+//Get all major wo categories
+function getwoMajor ($dbconn) {
+    $sqlwoMajor = "SELECT * FROM woMajor";
+    $resultwoMajor = $dbconn->query($sqlwoMajor);
+    return $resultwoMajor;
 }
 
 //Get trainer selected work outs (Those the trainer wants to train)

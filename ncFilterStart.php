@@ -1,4 +1,25 @@
 <?php
+error_reporting(E_ALL);
+
+    require_once 'connectdb.php';
+    $woMajor = getwoMajor ($dbconn);
+    $errors = array();
+
+try {
+
+    if (isset($_POST['filtSubmit'])) {
+        if ($_POST['woMajorId'] == "") {
+            $errors['woMajorId'] = "Please select a category";
+        } else {
+            $woMajorId = $_POST['woMajorId'];
+            $classType = $_POST['classType'];
+            header("location: filter2.php?woMajorId=$woMajorId&classType=$classType");
+        }
+    }
+
+} catch (Exception $e) {
+    echo 'Message: ', $e->getMessage(), "\n";
+}
 
 
 ?>
@@ -21,13 +42,41 @@
     </style>
 </head>
 <body>
-<div id="topbanner">
-    <?php include_once 'includes/inc.customer.banner.php' ?>
-</div><!--end topbanner-->
+    <div id="topbanner">
+        <?php include_once 'includes/inc.customer.banner.php' ?>
+    </div><!--end topbanner-->
 
-<div id="botbanner" class="botfix">
-    <?php include_once 'includes/inc.botbanner.php'; ?>
-</div><!--end botbanner-->
+    <div id="wrapper">
+        <div id="container1">
+            <form action="" id="ncFilter" method="post">
+                <h2>Please Select a Work Out Category<br/><br/>
+                <select name="woMajorId">
+                    <option value="">Select</option>
+                    <?php foreach ($woMajor as $row ) {
+                        echo "<option value='" .$row['woMajorId'] ."'>" .$row['woMajorName'] ."</option>";
+                    } ?>
+                </select>
+                <span class="error">
+                    <?php
+                    if ($_POST && isset($errors['woMajorId'])) {
+                        echo $errors['woMajorId'];
+                    }
+                    ?>
+                </span><br/>
+                <p>
+                    <input type="radio" id="classType" name="classType" class="rad" value="trainer" checked="checked"/>&nbsp;&nbsp;Search for a trainer
+                    <input type="radio" id="classType" name="classType" class="rad" value="class"/>&nbsp;&nbsp;Search for a class
+                </p>
+                </h2>
+                <input type="submit" id="filtSubmit" name="filtSubmit" class="btn" value="NEXT"/>
+            </form>
+
+        </div><!--end container1-->
+    </div><!--end wrapper-->
+
+    <div id="botbanner" class="botfix">
+        <?php include_once 'includes/inc.botbanner.php'; ?>
+    </div><!--end botbanner-->
 
 </body>
 </html>
