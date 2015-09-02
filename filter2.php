@@ -1,4 +1,8 @@
 <?php
+error_reporting(E_ALL);
+
+    require_once 'connectdb.php';
+    require_once 'scripts/filter2sc.php';
 
 ?>
 
@@ -26,7 +30,22 @@
 
     <div id="wrapper">
         <div id="container1">
+            <form action="" id="filt2" method="post">
+                <h2>For whom are you booking this session<br/><br/>
+                    <input type="radio" id="guest" name="guest" class="rad" checked value="guest">&nbsp;&nbsp;Guest
+                    <input type="radio" id="guest" name="guest" class="rad" value="myself">&nbsp;&nbsp;Myself
 
+                    <p>
+                        Please choose a work out<br>
+                        <select name="woSubCatId">
+                            <option value="">Select</option>
+                            <?php foreach ($wo as $row ) {
+                                echo "<option value='" .$row['woSubCatId'] ."'>" .$row['woSubCatName'] ."</option>";
+                            } ?>
+                        </select>
+                    </p>
+                </h2>
+            </form>
         </div>
     </div>
 

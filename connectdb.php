@@ -63,6 +63,15 @@ function getwoMajor ($dbconn) {
     return $resultwoMajor;
 }
 
+//Get work outs by Major wo Category
+function getWobyMajCat ($dbconn, $woMajorId) {
+    $sqlWOMC = "SELECT woJoin.*, woSubCat.woSubCatName FROM woJoin
+                LEFT JOIN woSubCat ON woSubCat.woSubCatId = woJoin.woSubCatId
+                WHERE woJoin.woMajorId = '2'";
+    $resultWOMC = $dbconn->query($sqlWOMC);
+    return $resultWOMC;
+}
+
 //Get trainer selected work outs (Those the trainer wants to train)
 function gettrWOs ($dbconn, $trId) {
     $sqlTrWOs = "SELECT wotrJoin.*, woSubCat.woSubCatName FROM wotrJoin
