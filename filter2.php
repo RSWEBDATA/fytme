@@ -51,6 +51,8 @@ error_reporting(E_ALL);
                             ?>
                         </span><br/>
                     </p>
+                    Give us your zip code<br/>
+                    <input type="text" id="zipcode" name="zipcode" style="width: 30%;" placeholder="Zip Code"/> <br/>
                 </h2>
                 <input type="submit" id="filt2sub" name="filt2sub" class="btn" value="NEXT"/>
             </form>
